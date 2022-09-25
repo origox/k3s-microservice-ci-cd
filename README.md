@@ -10,6 +10,9 @@ dev app code => ci/cd pipeline will tests app, build app container, deliver to d
 
 ## Frameworks/Technologies
 - FastAPI - Fast and robust Python Web/API framework
+- MongoDB - NoSQL database
+- Motor - Non-blocking API for MongoDB
+- Uvicorn - ASGI web server
 - GitHub Actions workflows for CI/CD pipeline
 - Docker/Dockerhub - Containerize everything
 - K3S - Kubernetes
