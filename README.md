@@ -34,3 +34,4 @@ dev app code => ci/cd pipeline will tests app, build app container, deliver to d
 - Develop an AI/ML api
 - Separate web html from actual Api service 
 - Messagebus, Celery, ...
+
