@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from api import items
+from app.api import items
 
 app = FastAPI()
 
