@@ -23,7 +23,8 @@ dev app code => ci/cd pipeline will tests app, build app container, deliver to d
 ### origox/k3s-microservice-ci-cd
 - Github repo for actual app source, dockerfile and gitops workflow(CI and Continous Delivery) i.e. this repo
 
-### origox/k3s-microservice-ci-cd-helm-charts
+### origox/k3s-microservice-ci-cd-helm-charts 
+- [origox/k3s-microservice-ci-cd-helm-charts](https://github.com/origox/k3s-microservice-ci-cd-helm-charts)
 - Related Github repo holding Helm charts for app deployment.
 - This repo will be related to Fleet i.e. "container management and deployment engine"
 
