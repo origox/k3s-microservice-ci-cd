@@ -27,8 +27,8 @@ dev app code => ci/cd pipeline will tests app, build app container, deliver to d
 - Related Github repo holding Helm charts for app deployment.
 - This repo will be related to Fleet i.e. "container management and deployment engine"
 
-### dockerhub
-- https://hub.docker.com/repository/docker/origox/.....
+### GHCR - Container Registry
+- https://github.com/origox/k3s-microservice-ci-cd/pkgs/container/k3s-microservice-ci-cd
 
 # Future ideas
 - Develop an AI/ML api
