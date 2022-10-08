@@ -9,9 +9,11 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  IMAGE_TAG: ${{  github.ref_name }}
 
 jobs:
   build-and-push-image:
+    name: Build image and update Helm Chart values
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -49,3 +51,14 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Clone Helm chart repo and update new containter image tags
+        run: |
+          CONTAINER_IMAGE_TAG = ${{ env.IMAGE_TAG }}
+          echo New container image tag: ${{ env.IMAGE_TAG }}
+          echo Create temp directory to clone helm repo
+          TEMP_DIR=="$(mktemp -d)"
+          echo Clone the repository...
+          git clone -b main "https://origox:${ACCESS_TOKEN}@github.com:origox/k3s-microservice-ci-cd-helm-charts.git" ${TEMP_FOLDER} 
+          cd ${TEMP_FOLDER}/application-charts/fastapi 
+          ls
