@@ -62,3 +62,11 @@ jobs:
           git clone -b main "https://origox:${ACCESS_TOKEN}@github.com/origox/k3s-microservice-ci-cd-helm-charts.git" ${TEMP_FOLDER} 
           cd ${TEMP_DIR}/application-charts/fastapi 
           ls
+          CONTAINER_IMAGE_TAG=$CONTAINER_IMAGE_TAG yq e -i '.fastapi.deployment.imageTag = env(CONTAINER_IMAGE_TAG)' ./values.yaml
+          echo 'Container image tag updated in fastapi/values.yaml' 
+          cd ../../
+          git config user.email "jfrandberg@gmail.com" 
+          git config user.name "origox" 
+          git add .  
+          git commit -m "refactor - updated Helm chart values for environment with container image - $CONTAINER_IMAGE_TAG" 
+          git push -u origin main
