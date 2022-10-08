@@ -60,5 +60,5 @@ jobs:
           TEMP_DIR=="$(mktemp -d)"
           echo Clone the repository...
           git clone -b main "https://origox:${ACCESS_TOKEN}@github.com/origox/k3s-microservice-ci-cd-helm-charts.git" ${TEMP_FOLDER} 
-          cd ${TEMP_FOLDER}/application-charts/fastapi 
+          cd ${TEMP_DIR}/application-charts/fastapi 
           ls
