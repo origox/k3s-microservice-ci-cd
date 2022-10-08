@@ -59,14 +59,14 @@ jobs:
           echo Create temp directory to clone helm repo
           TEMP_DIR=="$(mktemp -d)"
           echo Clone the repository...
-          git clone -b main "https://origox:${ACCESS_TOKEN}@github.com/origox/k3s-microservice-ci-cd-helm-charts.git" ${TEMP_FOLDER} 
+          git clone -b main "https://origox:${ACCESS_TOKEN}@github.com/origox/k3s-microservice-ci-cd-helm-charts.git" ${TEMP_DIR} 
           cd ${TEMP_DIR}/application-charts/fastapi 
           ls
-          CONTAINER_IMAGE_TAG=$CONTAINER_IMAGE_TAG yq e -i '.fastapi.deployment.imageTag = env(CONTAINER_IMAGE_TAG)' ./values.yaml
+          CONTAINER_IMAGE_TAG=$IMAGE_TAG yq e -i '.deployment.tag = env(CONTAINER_IMAGE_TAG)' ./values.yaml
           echo 'Container image tag updated in fastapi/values.yaml' 
           cd ../../
           git config user.email "jfrandberg@gmail.com" 
           git config user.name "origox" 
           git add .  
-          git commit -m "refactor - updated Helm chart values for environment with container image - $CONTAINER_IMAGE_TAG" 
+          git commit -m "refactor - updated Helm chart values for environment with container image - $IMAGE_TAG" 
           git push -u origin main
