@@ -10,6 +10,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   IMAGE_TAG: ${{  github.ref_name }}
+  ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build-and-push-image:
@@ -54,7 +55,6 @@ jobs:
 
       - name: Clone Helm chart repo and update new containter image tags
         run: |
-          CONTAINER_IMAGE_TAG = ${{ env.IMAGE_TAG }}
           echo New container image tag: ${{ env.IMAGE_TAG }}
           echo Create temp directory to clone helm repo
           TEMP_DIR=="$(mktemp -d)"
