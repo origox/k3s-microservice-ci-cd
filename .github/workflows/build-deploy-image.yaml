@@ -53,20 +53,24 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Clone Helm chart repo and update new containter image tags
+      - name: Checkout Helm repository
+        uses: actions/checkout@v3
+        with:
+          path: 'dest'
+          ref: 'main'
+          repository: 'origox/k3s-microservice-ci-cd-helm-charts'
+          token: ${{ secrets.BOT_TOKEN }}
+
+      - name: Update Helm chart repo to new containter image tags
         run: |
           echo New container image tag: ${{ env.IMAGE_TAG }}
-          echo Create temp directory to clone helm repo
-          TEMP_DIR=="$(mktemp -d)"
-          echo Clone the repository...
-          git clone -b main "https://origox:${ACCESS_TOKEN}@github.com/origox/k3s-microservice-ci-cd-helm-charts.git" ${TEMP_DIR} 
-          cd ${TEMP_DIR}/application-charts/fastapi 
+          cd dest/application-charts/fastapi 
           ls
           CONTAINER_IMAGE_TAG=$IMAGE_TAG yq e -i '.deployment.tag = env(CONTAINER_IMAGE_TAG)' ./values.yaml
           echo 'Container image tag updated in fastapi/values.yaml' 
           cd ../../
-          git config user.email "jfrandberg@gmail.com" 
-          git config user.name "origox" 
+          git config user.email "${{ secrets.BOT_EMAIL }}" 
+          git config user.name "${{ secrets.BOT_NAME }}" 
           git add .  
           git commit -m "refactor - updated Helm chart values for environment with container image - $IMAGE_TAG" 
           git push -u origin main
