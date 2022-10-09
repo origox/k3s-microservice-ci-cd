@@ -66,9 +66,7 @@ jobs:
           echo New container image tag: ${{ env.IMAGE_TAG }}
           cd dest/application-charts/fastapi 
           ls
-          CONTAINER_IMAGE_TAG_SHORT=${IMAGE_TAG:1}
-          yq e -i '.chart.tag = ${CONTAINER_IMAGE_TAG_SHORT}' ./Chart.yaml
-          yq e -i '.chart.tag = ${CONTAINER_IMAGE_TAG_SHORT}' ./Chart.yaml
+          CONTAINER_IMAGE_TAG_SHORT=${IMAGE_TAG:1} yq e -i '.version = env(CONTAINER_IMAGE_TAG_SHORT)' ./Chart.yaml
           echo 'Container image tag updated in fastapi/values.yaml' 
           cd ../../
           git config user.email "${{ secrets.BOT_EMAIL }}" 
