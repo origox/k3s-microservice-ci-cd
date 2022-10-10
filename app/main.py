@@ -9,4 +9,4 @@ app.include_router(items.router)
 
 @app.get("/")
 async def root():
-    return {"message": "Hello Bigger Applications!"}
+    return {"message": "Hello CI/CD powered Application!"}
