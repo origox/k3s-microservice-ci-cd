@@ -31,6 +31,9 @@ dev app code => ci/cd pipeline will tests app, build app container, deliver to d
 ### GHCR - Container Registry
 - https://github.com/origox/k3s-microservice-ci-cd/pkgs/container/k3s-microservice-ci-cd
 
+
+## Rancher/Suse Fleet Setup
+
 # Future ideas
 - Develop an AI/ML api
 - Separate web html from actual Api service 
